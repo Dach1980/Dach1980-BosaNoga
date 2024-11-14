@@ -2,8 +2,8 @@ const http = require('http');
 const fs = require('fs');
 const Koa = require('koa');
 const Router = require('koa-router');
+const { koaBody } = require('koa-body')
 const cors = require('koa2-cors');
-const koaBody = require('koa-body');
 
 const categories = JSON.parse(fs.readFileSync('./data/categories.json'));
 const items = JSON.parse(fs.readFileSync('./data/products.json'));
@@ -42,10 +42,13 @@ const fortune = (ctx, body = null, status = 200) => {
 }
 
 const app = new Koa();
-app.use(cors());
-app.use(koaBody({
-    json: true
-}));
+
+app.use(koaBody());
+app.use((ctx) => {
+    ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+});
+
+// app.listen(3000);
 
 const router = new Router();
 
@@ -114,6 +117,7 @@ router.post('/api/order', async (ctx, next) => {
 
 app.use(router.routes())
 app.use(router.allowedMethods());
+app.use(cors());
 
 const port = process.env.PORT || 7070;
 const server = http.createServer(app.callback());
