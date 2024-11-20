@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
+    "prestart": "npm ci",
     "start": "forever server.js",
     "watch": "forever -w server.js"
   },
