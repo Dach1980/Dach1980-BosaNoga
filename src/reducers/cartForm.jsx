@@ -20,14 +20,16 @@ const initialState = {
 export default function searchReducer(state = initialState, action) {
     switch (action.type) {
         case CHANGE_FORM_INPUT:
-            const { name, value } = action.payload;
-            return {
-                ...state,
-                form: {
-                    ...state.form,
-                    [name]: value,
-                },
-            };
+            {
+                const { name, value } = action.payload;
+                return {
+                    ...state,
+                    form: {
+                        ...state.form,
+                        [name]: value,
+                    },
+                };
+            }
         case CLEAR_FORM:
             return {
                 ...state,
@@ -35,7 +37,6 @@ export default function searchReducer(state = initialState, action) {
                     ...initialState.form,
                 },
             };
-
         case SEND_ORDER_REQUEST:
             return {
                 ...state,
@@ -47,13 +48,15 @@ export default function searchReducer(state = initialState, action) {
                 success: true,
             };
         case SEND_ORDER_ERROR:
-            const { error } = action.payload;
-            return {
-                ...state,
-                loading: false,
-                success: false,
-                error: "Ошибка отправки, попробуйте отправить форму повторно",
-            };
+            {
+                const { error } = action.payload;
+                return {
+                    ...state,
+                    loading: false,
+                    success: false,
+                    error: error || "Ошибка отправки, попробуйте отправить форму повторно",
+                };
+            }
         default:
             return state;
     }

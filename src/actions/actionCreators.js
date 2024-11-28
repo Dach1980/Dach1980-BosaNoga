@@ -1,4 +1,3 @@
-import queryString from 'query-string';
 import {
     FETCH_PRODUCTS_REQUEST,
     FETCH_PRODUCTS_FAILURE,
@@ -67,13 +66,6 @@ export const fetchCategoriesFailure = (error) => ({
         error,
     },
 });
-
-// export const fetchCategoriesSuccess = (items) => ({
-//     type: FETCH_CATEGORIES_SUCCESS,
-//     payload: {
-//         items,
-//     },
-// });
 
 export const fetchCategoriesSuccess = (data) => ({
     type: FETCH_CATEGORIES_SUCCESS,
@@ -213,7 +205,8 @@ export const fetchProducts = (offset) => async (dispatch, getState) => {
         dispatch(clearProducts());
     }
 
-    const params = queryString.stringify({ offset, categoryId, q: query });
+// Создаем объект URLSearchParams на основе параметров
+    const params = new URLSearchParams({ offset, categoryId, q: query }).toString();
     const fetchUrl = `${baseUrl}items?${params}`;
 
     try {
@@ -293,7 +286,7 @@ export const fetchBestsellers = () => async (dispatch) => {
     dispatch({ type: FETCH_BESTSELLERS_REQUEST });
 
     try {
-        const response = await fetch(`${baseUrl}top-sales</`);
+        const response = await fetch(`${baseUrl}top-sales/`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch bestsellers');
