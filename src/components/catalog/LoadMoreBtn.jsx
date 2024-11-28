@@ -11,7 +11,7 @@ const LoadMoreBtn = ({ items }) => {
   const [prevCount, setPrevCount] = useState(1);
   const showBtn = !loading && (items.length % 6 === 0) && (countItems !== prevCount) && countItems;
 
-  console.log(showBtn);
+  console.log('items:', items);
 
   useEffect(() => {
     setCountItems(items.length);

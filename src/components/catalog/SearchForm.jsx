@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../actions/actionCreators";
 import { productsListSelector } from "../../selectors";
@@ -20,10 +20,10 @@ const SearchForm = ({ isVisible }) => {
     return (
         <form className="catalog-search-form form-inline" onSubmit={handleSubmit}>
             <input
-              className="form-control"
-              placeholder="Поиск"
-              value={inputValue}
-              onChange={(event) => setInputValue(event.target.value)}
+                className="form-control"
+                placeholder="Поиск"
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
             />
         </form>
     )

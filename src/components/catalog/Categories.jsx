@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { categoriesListSelector } from "../../selectors";
 import {setCategoryId, fetchProducts, fetchCategories} from "../../actions/actionCreators";

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartItemsSelector } from "../selectors";
@@ -8,6 +8,7 @@ import { setCartItems } from "../actions/actionCreators";
 const OrderTable = () => {
     const { items } = useSelector(cartItemsSelector);
     const dispatch = useDispatch();
+    console.log('OrderTable -items ', items)
 
     const handleDelete = (id, size) => {
         const newItems = items.filter((item) => !(item.id === id && item.size === size))
