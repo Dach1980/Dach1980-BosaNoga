@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems, fetchProduct } from "../actions/actionCreators";
@@ -59,7 +59,7 @@ const ProductView = () => {
 
     useEffect(() => {
         dispatch(fetchProduct(navigate, id))
-    }, [id]);
+    }, [id, dispatch, navigate]);
 
     const isProduct = Boolean(Object.keys(product).length);
     const availableSizes = isProduct ? product.sizes.filter((size) => size.available) : null;

@@ -24,28 +24,34 @@ export default function productsListReducer(state = initialState, action) {
                 error: null,
             };
         case FETCH_PRODUCTS_FAILURE:
-            const { error } = action.payload;
-            return {
-                ...state,
-                loading: false,
-                error: "Ошибка загрузки товаров",
-            };
+            {
+                const { error } = action.payload;
+                return {
+                    ...state,
+                    loading: false,
+                    error: error || "Ошибка загрузки товаров",
+                };
+            }
         case FETCH_PRODUCTS_SUCCESS_FIRST:
-            const { items } = action.payload;
-            return {
-                ...state,
-                items,
-                loading: false,
-                error: null,
-            };
+            {
+                const { items } = action.payload;
+                return {
+                    ...state,
+                    items,
+                    loading: false,
+                    error: null,
+                };
+            }
         case FETCH_PRODUCTS_SUCCESS_MORE:
-            const { moreItems } = action.payload;
-            return {
-                ...state,
-                items: [...state.items, ...moreItems],
-                loading: false,
-                error: null,
-            };
+            {
+                const { moreItems } = action.payload;
+                return {
+                    ...state,
+                    items: [...state.items, ...moreItems],
+                    loading: false,
+                    error: null,
+                };
+            }
         case CLEAR_PRODUCTS:
             return {
                 ...state,
@@ -57,11 +63,13 @@ export default function productsListReducer(state = initialState, action) {
                 loading: false,
             };
         case SET_SEARCH_STRING:
-            const { query } = action.payload;
-            return {
-                ...state,
-                query,
-            };
+            {
+                const { query } = action.payload;
+                return {
+                    ...state,
+                    query,
+                };
+            }
         default:
             return state;
     }

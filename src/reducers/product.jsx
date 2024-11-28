@@ -20,19 +20,23 @@ export default function productReducer(state = initialState, action) {
                 error: null,
             };
         case FETCH_PRODUCT_FAILURE:
-            const { error } = action.payload;
-            return {
-                ...state,
-                loading: false,
-                error: "Ошибка загрузки товара",
-            };
+            {
+                const { error } = action.payload;
+                return {
+                    ...state,
+                    loading: false,
+                    error: error || "Ошибка загрузки товара",
+                };
+            }
         case FETCH_PRODUCT_SUCCESS:
-            const { product } = action.payload;
-            return {
-                ...state,
-                loading: false,
-                product,
-            };
+            {
+                const { product } = action.payload;
+                return {
+                    ...state,
+                    loading: false,
+                    product,
+                };
+            }
         case CLEAR_PRODUCT:
             return {
                 ...initialState,

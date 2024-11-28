@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import PropTypes from 'prop-types';
 
 const Loader = ({ loading }) => {
     if (!loading) return null;
@@ -11,6 +12,11 @@ const Loader = ({ loading }) => {
             <span />
         </div>
     );
+};
+
+// Добавляем валидацию пропсов
+Loader.propTypes = {
+    loading: PropTypes.bool.isRequired, // Указываем, что loading это обязательный булевый пропс
 };
 
 export default Loader;
