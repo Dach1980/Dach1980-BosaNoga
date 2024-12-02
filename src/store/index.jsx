@@ -18,10 +18,7 @@ const store = configureStore({
     },
 })
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const store = createStore(reducer, composeEnhancers(
-//     applyMiddleware(thunk),
-// ));
+console.log('Это index - store:', store);
 
 export default store;

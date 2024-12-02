@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -22,15 +22,15 @@
           <a class="navbar-brand" href="/">
             <img src="./img/header-logo.png" alt="Bosa Noga">
           </a>
-          <div class="collapse navbar-collapse" id="navbarMain">
+          <div class="collapase navbar-collapse" id="navbarMain">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="/">Главная</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/catalog.html">Каталог</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="/about.html">О магазине</a>
               </li>
               <li class="nav-item">
@@ -63,22 +63,36 @@
           <h2 class="banner-header">К весне готовы!</h2>
         </div>
         <section class="top-sales">
-          <h2 class="text-center">Хиты продаж!</h2>
-          <div class="preloader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </section>
-        <section class="catalog">
-          <h2 class="text-center">Каталог</h2>
-          <div class="preloader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <h2 class="text-center">О магазине</h2>
+          <p>
+            В Интернете можно встретить немало магазинов, предлагающих аксессуары. Но именно к нам хочется
+            возвращаться снова и снова.
+          </p>
+          <p class="h4 text-center">Мы предлагаем вам особые условия:</p>
+          <ol>
+            <li>Индивидуальный подход специалиста. Когда поступает новая коллекция обуви весна-лето или
+              же коллекция обуви осень-зима – покупателям бывает трудно сориентироваться во всем
+              многообразии новинок. Наш менеджер по телефону поможет вам определиться с товарами,
+              подходящими именно вам.
+            </li>
+            <li>Мы периодически проводим распродажи как женских и мужских, так и детских моделей. Вы
+              будете приятно удивлены ценами на аксессуары в мага- зине BosaNoga.
+            </li>
+            <li>У нас всегда есть из чего выбрать. Неважно, какую категорию вы прос- матриваете:
+              осень-зима, или же весна-лето – вы всегда сможете найти ва- рианты, подходящие вам по
+              внешнему виду и цене.
+            </li>
+            <li>Мы несем ответственность за все товары.</li>
+            <li>Молодые мамы будут рады обширному ассортименту детских моделей.</li>
+          </ol>
+          <p> Если вы ищете место, где представлены обувные новинки от самых известных брендов, то вы
+            зашли по верному адресу.
+          </p>
+          <p>У нас представлены модели для мужчин, женщин, а также детские сапоги, босоножки, ботинки и
+            туфли. Сделав заказ в нашем интернет-магазине, вы сможете быть модным и стильным как
+            осенью-зимой, так и весной-летом. Просто наберите номер нашего телефона, и мы поможем вам
+            определиться с покупкой.
+          </p>
         </section>
       </div>
     </div>
@@ -128,6 +142,7 @@
     </div>
   </footer>
   <script>
+    // TODO: replace it with React!
     const searchEl = document.querySelector('[data-id=search-expander]');
     const searchFormEl = document.querySelector('[data-id=search-form]');
     searchEl.addEventListener('click', () => {

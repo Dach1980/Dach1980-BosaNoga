@@ -9,6 +9,7 @@ const Categories = () => {
   const dispatch = useDispatch();
   const { items, categoryId, loading, error } = useSelector(categoriesListSelector);
   const allItems = [{ title: 'Все', id: null }, ...items];
+  console.log('Это Categories - items:', items);
 
   const handleClick = (event, id) => {
     event.preventDefault();
