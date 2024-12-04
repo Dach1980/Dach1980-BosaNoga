@@ -1,3 +1,4 @@
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
