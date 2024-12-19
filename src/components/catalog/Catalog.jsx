@@ -30,7 +30,7 @@ const Catalog = () => {
             }
             dispatch(setCategoryId(null));
         }
-    }, [dispatch, isCatalog]);  // Добавляем isCatalog как зависимость
+    }, [dispatch, isCatalog]); // Добавляем isCatalog как зависимость
 
     const catalogLoading = cardsLoading && categoriesLoading;
  

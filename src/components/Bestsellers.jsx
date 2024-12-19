@@ -15,7 +15,7 @@ const Bestsellers = () => {
     return (
         <section className="top-sales">
             <h2 className="text-center">Хиты продаж</h2>
-            <Cards loading={loading} error={error} items={items} />
+            <Cards loading={loading} error={error} items={items} isCatalog={false} />
         </section>
     )
 }

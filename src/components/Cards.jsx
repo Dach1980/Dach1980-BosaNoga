@@ -64,12 +64,12 @@ const Cards = ({
     );
 };
 
-Cards.propTypes = {
-    items: PropTypes.array.isRequired, // Убедитесь, что items - массив и обязательный
-    isCatalog: PropTypes.bool.isRequired, // isCatalog - булевый тип и обязательный
-    loading: PropTypes.bool.isRequired, // loading - булевый тип и обязательный
-    error: PropTypes.string, // error - строковый тип, но не обязательный
-    categories: PropTypes.array // categories - массив, но не обязательный
-};
+// Cards.propTypes = {
+//     items: PropTypes.array.isRequired, // Убедитесь, что items - массив и обязательный
+//     isCatalog: PropTypes.bool.isRequired, // isCatalog - булевый тип и обязательный
+//     loading: PropTypes.bool.isRequired, // loading - булевый тип и обязательный
+//     error: PropTypes.string, // error - строковый тип, но не обязательный
+//     categories: PropTypes.array // categories - массив, но не обязательный
+// };
 
 export default Cards;
