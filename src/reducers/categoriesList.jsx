@@ -20,26 +20,29 @@ export default function categoriesListReducer(state = initialState, action) {
                 loading: true,
                 error: null,
             };
-        case FETCH_CATEGORIES_FAILURE:
+        case FETCH_CATEGORIES_FAILURE: {
             const { error } = action.payload;
             return {
                 ...state,
                 loading: false,
-                error: "Ошибка загрузки категорий",
+                error: error || "Ошибка загрузки категорий",
             };
-        case FETCH_CATEGORIES_SUCCESS:
+        }
+        case FETCH_CATEGORIES_SUCCESS: {
             const { items } = action.payload;
             return {
                 ...state,
                 loading: false,
                 items,
             };
-        case SET_CATEGORY_ID:
+        }
+        case SET_CATEGORY_ID: {
             const { categoryId } = action.payload;
             return {
                 ...state,
                 categoryId,
             };
+        }
         default:
             return state;
     }

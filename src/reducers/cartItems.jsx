@@ -10,12 +10,14 @@ const initialState = {
 export default function searchReducer(state = initialState, action) {
     switch (action.type) {
         case REPLACE_CART_ITEMS:
-            const { items } = action.payload;
+            {
+                const { items } = action.payload;
 
-            return {
-                items: [...items],
-                cartItemsCount: items.length,
-            };
+                return {
+                    items: [...items],
+                    cartItemsCount: items.length,
+                };
+            }
         default:
             return state;
     }

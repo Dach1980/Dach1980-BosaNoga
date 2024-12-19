@@ -1,5 +1,6 @@
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';

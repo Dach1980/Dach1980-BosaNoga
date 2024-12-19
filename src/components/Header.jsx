@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../actions/actionCreators";
@@ -58,7 +58,6 @@ const Header = () => {
                                             onChange={(event) => setInputValue(event.target.value)}
                                         />
                                     </form>
-                                    {/* Do programmatic navigation on click to /cart */}
                                     <div
                                         className="header-controls-pic header-controls-cart"
                                         onClick={handleCartClick}

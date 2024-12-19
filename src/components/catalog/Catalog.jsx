@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { categoriesListSelector, productsListSelector } from "../../selectors";
@@ -17,10 +17,12 @@ const Catalog = () => {
     const isCatalog = location.pathname === '/catalog';
 
     useEffect(() => {
-        dispatch(fetchCategories());
-        if (!cardsLoading) {
-            dispatch(fetchProducts(0));
-        }
+        const loadData = async () => {
+            await dispatch(fetchCategories()); // грузим категории
+            await dispatch(fetchProducts(0)); // теперь грузим продукты
+        };
+
+        loadData();
 
         return () => {
             if (isCatalog) {
@@ -28,9 +30,14 @@ const Catalog = () => {
             }
             dispatch(setCategoryId(null));
         }
-    }, []);
+    }, [dispatch, isCatalog]); // Добавляем isCatalog как зависимость
 
     const catalogLoading = cardsLoading && categoriesLoading;
+ 
+    // Выводим данные в консоль для отладки
+    console.log('Products:', items);
+    console.log('Categories:', categories);
+    console.log('Loading states:', cardsLoading, categoriesLoading);
 
     return (
         <section className="catalog">

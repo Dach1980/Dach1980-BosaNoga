@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { categoriesListSelector } from "../../selectors";
 import {setCategoryId, fetchProducts, fetchCategories} from "../../actions/actionCreators";
@@ -8,7 +8,8 @@ import Message from "../Message";
 const Categories = () => {
   const dispatch = useDispatch();
   const { items, categoryId, loading, error } = useSelector(categoriesListSelector);
-  const allItems = [{ title: 'Все', id: null }, ...items];
+  const allItems = [{ title: 'Все', id: null }, ...(Array.isArray(items) ? items : [])];
+  console.log('Это Categories - items:', items);
 
   const handleClick = (event, id) => {
     event.preventDefault();
@@ -22,6 +23,11 @@ const Categories = () => {
 
   if (error) {
     return <Message type="error" message={error} callback={fetchCategories} />
+  }
+
+  // Обработка случая, когда items не итерируемый
+  if (!items || !Array.isArray(items)) {
+    return <Message type="error" message="Нет доступных категорий." />;
   }
 
   return (
