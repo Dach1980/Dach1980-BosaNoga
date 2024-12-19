@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import {
     FETCH_PRODUCTS_REQUEST,
     FETCH_PRODUCTS_FAILURE,
@@ -53,7 +54,6 @@ export const fetchProductsSuccessMore = (items) => ({
 
 export const clearProducts = () => ({
     type: CLEAR_PRODUCTS,
-// });fetchProducts 
 });
 
 export const fetchCategoriesRequest = () => ({
@@ -67,11 +67,12 @@ export const fetchCategoriesFailure = (error) => ({
     },
 });
 
-export const fetchCategoriesSuccess = (data) => ({
+export const fetchCategoriesSuccess = (items) => ({
     type: FETCH_CATEGORIES_SUCCESS,
-    payload: { categories: data },
+    payload: {
+        items,
+    },
 });
-
 
 export const setProductsLoadingFalse = () => ({
     type: SET_LOADING_FALSE,
@@ -165,7 +166,6 @@ export const setCartItems = (items) => (dispatch) => {
 
 export const sendOrder = (items, form) => (dispatch) => {
     dispatch(sendOrderRequest());
-
     const orderData = items.map((item) => ({ id: item.id, price: item.price, count: item.count }));
     fetch(`${baseUrl}order`, {
         method: 'POST',
@@ -205,8 +205,7 @@ export const fetchProducts = (offset) => async (dispatch, getState) => {
         dispatch(clearProducts());
     }
 
-// Создаем объект URLSearchParams на основе параметров
-    const params = new URLSearchParams({ offset, categoryId, q: query }).toString();
+    const params = queryString.stringify({ offset, categoryId, q: query });
     const fetchUrl = `${baseUrl}items?${params}`;
 
     try {
@@ -245,56 +244,40 @@ export const fetchCategories = () => async (dispatch) => {
         dispatch(fetchCategoriesFailure(error.message));
     }
 };
-
 export const fetchProduct = (navigate, id) => async (dispatch) => {
-    dispatch({ type: FETCH_PRODUCT_REQUEST });
+    dispatch(fetchProductRequest());
 
-    try {
-        const response = await fetch(`${baseUrl}items/${id}`);
-        
-        if (response.status === 404) {
-            navigate('/404');
-            return;
-        }
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch product');
-        }
-
-        const data = await response.json();
-        dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
-    } catch (error) {
-        dispatch(fetchProductFailure(error.message));
-    }
+    return fetch(`${baseUrl}items/${id}`)
+        .then((res) => {
+            if (res.status === 404) {
+                navigate('/404');
+                return null;
+            }
+            return res.json();
+        })
+        .then((res) => dispatch(fetchProductSuccess(res)))
+        .catch((error) => dispatch(fetchProductFailure(error.message)));
 };
 
-export const searchProducts = (query) => (dispatch) => {
+export const searchProducts = (query) => async (dispatch) => {
     dispatch(setSearchValue(query));
     dispatch(fetchProducts(0));
 };
 
-export const fetchProductsAndCategories = () => (dispatch) => {
+export const fetchProductsAndCategories = () => async (dispatch) => {
     dispatch(fetchCategories());
     dispatch(fetchProducts(0));
 };
 
-export const fetchProductsOnly = () => (dispatch) => {
+export const fetchProductsOnly = () => async (dispatch) => {
     dispatch(fetchProducts(0));
 };
 
-export const fetchBestsellers = () => async (dispatch) => {
-    dispatch({ type: FETCH_BESTSELLERS_REQUEST });
+export const fetchBestsellers = () => (dispatch) => {
+    dispatch(fetchBestsellersRequest());
 
-    try {
-        const response = await fetch(`${baseUrl}top-sales/`);
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch bestsellers');
-        }
-
-        const data = await response.json();
-        dispatch({ type: FETCH_BESTSELLERS_SUCCESS, payload: data });
-    } catch (error) {
-        dispatch({ type: FETCH_BESTSELLERS_FAILURE, payload: error.message });
-    }
+    return fetch(`${baseUrl}top-sales`)
+        .then((res) => res.json())
+        .then((res) => dispatch(fetchBestsellersSuccess(res)))
+        .catch((error) => dispatch(fetchBestsellersFailure(error.message)));
 };
